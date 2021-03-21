@@ -6,11 +6,12 @@ public class Polynomial {
     // 2 1 0 exponenety
     
     private double[] coefR; // [-1, 4, 5] to tam chcem
+    private int stupen = 0;
 
     //konstruktor
     private Polynomial(double[] coefR){ // [-1, 4, 5]
         this.coefR = Arrays.copyOf(coefR, coefR.length); //defenzivni kopie
-
+        this.stupen = coefR.length;
     }
 
 
@@ -68,10 +69,32 @@ public class Polynomial {
         return "Polynomial [coefR=" + Arrays.toString(coefR) + "]";
     }
 
+    public int getStupenPoly(){
+        return stupen - 1;
+    }
 
-    //public String toFormatedString(){
-    //    // "5x^2 + 4x -1" toto chcem na vystup
-    //}
+    public double getCoef(int index){
+        double coef = this.coefR[Math.abs(index - this.stupen)];
+        return coef;
+    }
+
+    public String toFormatedString(){
+        // "5x^2 + 4x^1 -1" toto chcem na vystup
+        int s = getStupenPoly() + 1;
+        String res = "";
+        for(int i = 0; i < s; i++){
+            res = res + coefR[i] + " x^" + i + " + ";
+        }
+        return res;
+    }
+
+    public double hornerValue(int x) { // to x je cislo ktere chceme cely polynom vynasobit
+        double result = coefR[0];
+        for (int i = 1; i < this.coefR.length; i++) {
+            result = result * x + coefR[i];
+        }
+        return result;
+    }
 
     
 

@@ -19,6 +19,13 @@ public class Polynomial3 {
         System.out.println(pp);
         Polynomial tt = pp.derivate();
         System.out.println(tt);
+        int sp = pp.getStupenPoly();
+        System.out.println("stupen polynomu je: " + sp); 
+        System.out.println(pp.toFormatedString()); 
+        System.out.println(pp.hornerValue(2));
+
+        
+
 
         }
 }
